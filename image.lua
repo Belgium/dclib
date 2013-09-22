@@ -8,7 +8,7 @@ setmetatable(Image, {
 })
 
 local transform = {
-    free = 'freeimage',
+    remove = 'freeimage',
     alpha = 'imagealpha',
     blend = 'imageblend',
     color = 'imagecolor',
