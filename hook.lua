@@ -89,7 +89,9 @@ setmetatable(Hook, {
                 end
             end
         else
-            Hook[id] = _G[func]
+            Hook[id] = function(...)
+                return _G[func](unpack(arg))
+            end
         end
         
         if prio then
