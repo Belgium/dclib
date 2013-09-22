@@ -23,16 +23,23 @@ Class Player
     Player.team2living
         a table with all living counter-terrorists
 
+
 Object Player
 
     methods
+        equip(weapon)
+        setpos(x, y)
         kick(reason)
+        banip(duration, reason)
+        banusgn(duration, reason)
         spawn()
         strip(wpn)
         slap()
         kill()
+        customkill(killer, weapon)
         msg(message)
-        setpos(x, y)
+        cmsg(message)
+        shake(power)
         ai_aim(x,y)
         ai_attack(secondary)
         ai_build(building, x, y)
@@ -46,6 +53,13 @@ Object Player
         ai_move(angle, walk)
         ai_radio(radioid)
         ai_reload()
+        ai_respawn()
+        ai_rotate(angle)
+        ai_say(text)
+        ai_sayteam(text)
+        ai_selectweapon(itemtype)
+        ai_spray()
+        ai_use()
 
     variables
         name
@@ -61,6 +75,8 @@ Object Player
         deaths
         speedmod
         maxhealth
+        weapon
+        weapons
 
     read-only variables
         exists

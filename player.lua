@@ -9,7 +9,8 @@ Player.indextable = {
     deaths = 'setdeaths',
     maxhealth = 'setmaxhealth',
     score = 'setscore',
-    money = 'setmoney'
+    money = 'setmoney',
+    weapon = 'setweapon'
 }
 
 setmetatable(Player, {
@@ -54,6 +55,10 @@ function Player.mt:__index(key)
             else 
                 return 0
             end
+        elseif key == 'weapon' then
+            return player(self.id, 'weapontype')
+        elseif key == 'weapons' then
+            return playerweapons(self.id)
         else
             return player(self.id, key)
         end
@@ -83,17 +88,52 @@ function Player.mt:__newindex(key, value)
         self:setpos(self.x, value * 16)
     elseif key == 'enemy' then
         return
+    elseif key == 'weapons' then
+        local tbl = playerweapons(self.id)
+        
+        for k,v in pairs(value) do
+            do
+                for k2,v2 in pairs(tbl) do
+                    if v == v2 then
+                        return
+                    end
+                end
+                self:equip(v)
+            end
+        end
+        for k,v in pairs(tbl) do
+            do
+                for k2,v2 in pairs(value) do
+                    if v == v2 then
+                        return
+                    end
+                end
+                self:strip(v)
+            end
+        end
     else
         rawset(self, key, value)
     end
 end
 
+function Player.mt:equip(weapon)
+    parse('equip ' .. self.id .. ' ' .. weapon)
+end
+
 function Player.mt:setpos(x, y)
-   parse('setpos ' .. self.id .. ' ' .. x .. ' ' .. y) 
+    parse('setpos ' .. self.id .. ' ' .. x .. ' ' .. y) 
 end
 
 function Player.mt:kick(reason)
     parse('kick ' .. self.id .. ' ' .. reason)
+end
+
+function Player.mt:banip(duration, reason)
+    parse('banip ' .. self.ip .. ' ' .. duration .. ' ' .. reason)
+end
+
+function Player.mt:banusgn(duration, reason)
+    parse('banusgn ' .. self.usgn .. ' ' .. duration .. ' ' .. reason)
 end
 
 function Player.mt:spawn(x, y)
@@ -112,8 +152,24 @@ function Player.mt:kill()
     parse('killplayer ' .. self.id)
 end
 
+function Player.mt:customkill(killer, weapon)
+    parse('customkill ' .. killer .. ' "' .. weapon .. '" ' .. self.id)
+end
+
 function Player.mt:msg(message)
     msg2(self.id, message)
+end
+
+function Player.mt:cmsg(message)
+    parse('cmsg "' .. message .. '" ' .. self.id)
+end
+
+function Player.mt:reroute(address)
+    parse('reroute ' .. self.id .. ' ' .. address)
+end
+
+function Player.mt:shake(power)
+    parse('shake ' .. self.id .. ' ' .. power)
 end
 
 -- bots
@@ -168,4 +224,32 @@ end
 
 function Player.mt:ai_reload()
     ai_reload(self.id)
+end
+
+function Player.mt:ai_respawn()
+    ai_respawn(self.id)
+end
+
+function Player.mt:ai_rotate(angle)
+    ai_rotate(self.id, angle)
+end
+
+function Player.mt:ai_say(text)
+    ai_say(self.id, text)
+end
+
+function Player.mt:ai_sayteam(text)
+    ai_sayteam(self.id, text)
+end
+
+function Player.mt:ai_selectweapon(itemtype)
+    ai_selectweapon(self.id, itemtype)
+end
+
+function Player.mt:ai_spray()
+    ai_spray(self.id)
+end
+
+function Player.mt:ai_use()
+    ai_use(self.id)
 end
