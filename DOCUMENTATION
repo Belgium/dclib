@@ -116,7 +116,7 @@ image.lua
         returns an image object
     
     methods
-        free()
+        remove()
         alpha(alpha)
         blend(mode)
         color(red, green, blue)
