@@ -199,7 +199,7 @@ function Player.mt:ai_drop()
 end
 
 function Player.mt:ai_findtarget()
-    return ai_findtarget(self.id)
+    return Player(ai_findtarget(self.id))
 end
 
 function Player.mt:ai_freeline(x, y)

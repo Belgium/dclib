@@ -108,3 +108,21 @@ Object Player
         rcon
         ai_flash
 
+
+Class Hook
+
+    Hook.add(hook, func, [priority])
+        wrapper for player hooks - uses player objects instead of player ids
+        returns Hook object
+
+
+Object Hook
+
+    methods
+        remove()
+
+    variables
+        hook
+        func
+        prio
+        id
