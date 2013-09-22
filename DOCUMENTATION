@@ -110,6 +110,30 @@ player.lua
         ai_flash
 
 
+image.lua
+
+    Image(path, x, y, mode, [pl])
+        returns an image object
+    
+    methods
+        free()
+        alpha(alpha)
+        blend(mode)
+        color(red, green, blue)
+        hitzone(mode, x, y, w, h)
+        pos(x, y, rot)
+        scale(x, y)
+        t_alpha(time, alpha)
+        t_color(time, red, green, blue)
+        t_move(time, x, y, [rot])
+        t_rotate(time, rot)
+        t_rotateconstantly(speed)
+        t_scale(time, x, y)
+    
+    read-only variables
+        id
+
+
 object.lua
 
     Object(id)
@@ -131,6 +155,7 @@ object.lua
         :kill()
 
     read-only variables
+        id
         exists
         typename
         type
@@ -164,7 +189,7 @@ hook.lua
         remove()
 
     variables
+        id
         hook
         func
         prio
-        id
