@@ -181,9 +181,9 @@ object.lua
 
 hook.lua
 
-    Hook.add(hook, func, [priority])
+    Hook(hook, func, [priority])
         creates a hook which uses lapi objects instead of ids
-        returns Hook object
+        returns hook object
 
     methods
         remove()
