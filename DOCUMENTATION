@@ -1,9 +1,12 @@
 DOCUMENTATION
 
-Class Player
+player.lua
 
     Player(id)
         returns a player object
+
+    Player(table)
+        converts a table of player ids to a table of player objects
 
     Player.table
         a table with all players
@@ -23,12 +26,10 @@ Class Player
     Player.team2living
         a table with all living counter-terrorists
 
-
-Object Player
-
     methods
         equip(weapon)
         setpos(x, y)
+        reqcld(mode, [parameter])
         kick(reason)
         banip(duration, reason)
         banusgn(duration, reason)
@@ -109,14 +110,55 @@ Object Player
         ai_flash
 
 
-Class Hook
+object.lua
+
+    Object(id)
+        returns an object
+
+    Object(table)
+        converts a table of object ids to a table of objects
+
+    Object(name)
+        returns corresponding type id for the name
+
+    Object.table
+        a table with all objects
+    
+    Object.spawn(type, x, y, rot, mode, team, player)
+        spawns a new object
+    
+    methods
+        :kill()
+
+    read-only variables
+        exists
+        typename
+        type
+        health
+        mode
+        team
+        player
+        x
+        y
+        rot
+        tilex
+        tiley
+        countdown
+        rootrot
+        idle
+        rotvar
+        target
+        upgrade
+        entity
+        entityx
+        entityy
+
+
+hook.lua
 
     Hook.add(hook, func, [priority])
         wrapper for player hooks - uses player objects instead of player ids
         returns Hook object
-
-
-Object Hook
 
     methods
         remove()

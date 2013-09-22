@@ -124,6 +124,10 @@ function Player.mt:setpos(x, y)
     parse('setpos ' .. self.id .. ' ' .. x .. ' ' .. y) 
 end
 
+function Player.mt:reqcld(mode, ...)
+    reqcld(self.id, mode, unpack(arg))
+end
+
 function Player.mt:kick(reason)
     parse('kick ' .. self.id .. ' ' .. reason)
 end
