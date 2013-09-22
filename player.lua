@@ -18,10 +18,12 @@ setmetatable(Player, {
         if type(arg) == "number" then
             if Player.data[arg] then
                 return Player.data[arg]
-            else
+            elseif arg > 0 and arg <= 32 then
                 local p = setmetatable({id = arg}, Player.mt)
                 Player.data[arg] = p
                 return p
+            else
+                return 0
             end
         elseif type(arg) == "table" then
             local tbl = {}

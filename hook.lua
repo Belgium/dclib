@@ -40,16 +40,36 @@ Hook.support = {
     usebutton = true,
     vipescape = true,
     vote = true,
-    walkover = true
+    walkover = true,
+    hitzone = true,
+    objectdamage = true,
+    objectkill = true,
+    objectupgrade = true
 }
 
 function Hook.add(hook, func, prio)
     local id = 'Hook_' .. Hook.count
     
     if Hook.support[hook] then
-        if hook == "kill" then
+        if hook == 'kill' then
             Hook[id] = function(killer, victim, ...)
                 return _G[func](Player(killer), Player(victim), unpack(arg))
+            end
+        elseif hook == 'hitzone' then
+            Hook[id] = function(img, ply, obj)
+                return _G[func](Image(img), Player(ply), Object(obj), unpack(arg))
+            end
+        elseif hook == 'objectdamage' then
+            Hook[id] = function(id, dmg, ply)
+                return _G[func](Object(id), dmg, Player(ply))
+            end
+        elseif hook == 'objectkill' then
+            Hook[id] = function(id, ply)
+                return _G[func](Object(id), Player(ply))
+            end
+        elseif hook == 'objectupgrade' then
+            Hook[id] = function(id, ply, ...)
+                return _G[func](Object(id), Player(ply), unpack(arg))
             end
         else
             Hook[id] = function(id, ...) -- create a wrapper function

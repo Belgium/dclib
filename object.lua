@@ -27,7 +27,11 @@ Object.names["Dynamic Image"] = 40
 setmetatable(Object, {
     __call = function(_, arg)
         if type(arg) == "number" then
-            return setmetatable({id = arg}, Object.mt)
+            if arg > 0 then
+                return setmetatable({id = arg}, Object.mt)
+            else
+                return 0
+            end
         elseif type(arg) == "table" then
             local tbl = {}
             for k,v in pairs(arg) do

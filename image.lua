@@ -2,8 +2,12 @@ Image = {}
 Image.mt = {}
 
 setmetatable(Image, {
-    __call = function(_, ...)
-        return setmetatable({id = image(unpack(arg))}, Image.mt)
+    __call = function(_, arg1, ...)
+        if type(arg1) == "number" then
+            return setmetatable({id = arg1}, Image.mt)
+        else
+            return setmetatable({id = image(arg1, unpack(arg))}, Image.mt)
+        end
     end
 })
 
