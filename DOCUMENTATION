@@ -93,7 +93,7 @@ player.lua
         teamkills
         hostagekills
         teambuildingkills
-        weapontype
+        weapon
         nightvision
         defusekit
         gasmask

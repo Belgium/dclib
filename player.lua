@@ -55,8 +55,6 @@ function Player.mt:__index(key)
             else 
                 return 0
             end
-        elseif key == 'weapon' then
-            return player(self.id, 'weapontype')
         elseif key == 'weapons' then
             return playerweapons(self.id)
         else
