@@ -6,7 +6,7 @@ setmetatable(Image, {
         if type(arg1) == "number" then
             return setmetatable({id = arg1}, Image.mt)
         else
-            return setmetatable({id = image(arg1, unpack(arg))}, Image.mt)
+            return Image(image(arg1, unpack(arg)))
         end
     end
 })

@@ -114,7 +114,10 @@ image.lua
 
     Image(path, x, y, mode, [pl])
         returns an image object
-    
+
+    Image(id)
+        returns an image object
+
     methods
         remove()
         alpha(alpha)
