@@ -1,0 +1,94 @@
+DOCUMENTATION
+
+Class Player
+
+    Player(id)
+        returns a player object
+
+    Player.table
+        a table with all players
+
+    Player.tableliving
+        a table with all living players
+
+    Player.team1
+        a table with all terrorists
+
+    Player.team2
+        a table with all counter-terrorists
+
+    Player.team1living
+        a table with all living terrorists
+
+    Player.team2living
+        a table with all living counter-terrorists
+
+Object Player
+
+    methods
+        kick(reason)
+        spawn()
+        strip(wpn)
+        slap()
+        kill()
+        msg(message)
+        setpos(x, y)
+        ai_aim(x,y)
+        ai_attack(secondary)
+        ai_build(building, x, y)
+        ai_buy(itemtype)
+        ai_debug(text)
+        ai_dropt()
+        ai_findtarget()
+        ai_freeline(x, y)
+        ai_goto(x, y, walk)
+        ai_iattack()
+        ai_move(angle, walk)
+        ai_radio(radioid)
+        ai_reload()
+
+    variables
+        name
+        team
+        x
+        y
+        tilex
+        tiley
+        health
+        armor
+        money
+        score
+        deaths
+        speedmod
+        maxhealth
+
+    read-only variables
+        exists
+        enemy
+        ip
+        port
+        usgn
+        ping
+        idle
+        bot
+        look
+        rot
+        teamkills
+        hostagekills
+        teambuildingkills
+        weapontype
+        nightvision
+        defusekit
+        gasmask
+        bomb
+        flag
+        reloading
+        process
+        sprayname
+        spraycolor
+        votekick
+        votemap
+        favteam
+        rcon
+        ai_flash
+
