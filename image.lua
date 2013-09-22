@@ -41,3 +41,11 @@ function Image.mt:__index(key)
         error("Unknown method " .. key)
     end
 end
+
+function Image.mt.__eq(a, b)
+    if a.id and b.id then
+        return a.id == b.id
+    else
+        return false
+    end
+end

@@ -65,6 +65,14 @@ function Object.mt:__index(key)
     end
 end
 
+function Object.mt.__eq(a, b)
+    if a.id and b.id then
+        return a.id == b.id
+    else
+        return false
+    end
+end
+
 function Object.mt:kill()
     parse('killobject ' .. self.id)
 end
