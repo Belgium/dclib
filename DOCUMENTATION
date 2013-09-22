@@ -182,7 +182,7 @@ object.lua
 hook.lua
 
     Hook.add(hook, func, [priority])
-        wrapper for player hooks - uses player objects instead of player ids
+        creates a hook which uses lapi objects instead of ids
         returns Hook object
 
     methods

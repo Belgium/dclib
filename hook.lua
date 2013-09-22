@@ -44,8 +44,11 @@ Hook.support = {
     hitzone = true,
     objectdamage = true,
     objectkill = true,
-    objectupgrade = true
+    objectupgrade = true,
+    projectile = true,
+    rcon = true
 }
+Hook.support['break'] = true
 
 function Hook.add(hook, func, prio)
     local id = 'Hook_' .. Hook.count
@@ -70,6 +73,14 @@ function Hook.add(hook, func, prio)
         elseif hook == 'objectupgrade' then
             Hook[id] = function(id, ply, ...)
                 return _G[func](Object(id), Player(ply), unpack(arg))
+            end
+        elseif hook == 'break' then
+            Hook[id] = function(x, y, ply)
+                return _G[func](x, y, Player(ply))
+            end
+        elseif hook == 'rcon' then
+            Hook[id] = function(cmds, ply, ...)
+                return _G[func](cmds, Player(ply), unpack(arg))
             end
         else
             Hook[id] = function(id, ...) -- create a wrapper function
