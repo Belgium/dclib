@@ -360,7 +360,7 @@ menu.lua
 
     Menu(ply, title, func)
         func will be called with parameters player, button_id
-        return a menu object
+        returns a menu object
     
     static variables
         next_page
@@ -372,3 +372,13 @@ menu.lua
         add_button(id, text)
         set_buttons(table)  NOTICE: table format {{'id1',"txt1"}, {'id2',"txt2"}}
         show()
+
+
+file.lua
+
+    File(path)
+        returns a file object
+
+    methods
+        write(table)
+        read()

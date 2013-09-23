@@ -92,23 +92,27 @@ function Player.mt:__newindex(key, value)
     elseif key == 'weapons' then
         local tbl = playerweapons(self.id)
         
+        print("let's give weapons")
         for k,v in pairs(value) do
-            do
-                for k2,v2 in pairs(tbl) do
-                    if v == v2 then
-                        return
-                    end
+            local found = false
+            for k2,v2 in pairs(tbl) do
+                if v == v2 then
+                    found = true
                 end
+            end
+            if not found then
                 self:equip(v)
             end
         end
         for k,v in pairs(tbl) do
-            do
-                for k2,v2 in pairs(value) do
-                    if v == v2 then
-                        return
-                    end
+            local found = false
+            for k2,v2 in pairs(value) do
+                print("v2 = " .. v2)
+                if v == v2 then
+                    found = true
                 end
+            end
+            if not found then
                 self:strip(v)
             end
         end
