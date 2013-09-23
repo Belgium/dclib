@@ -1,12 +1,19 @@
 if not lapi then
-    dofile("sys/lua/lapi/player.lua")
-    dofile("sys/lua/lapi/object.lua")
-    dofile("sys/lua/lapi/image.lua")
-    dofile("sys/lua/lapi/hook.lua")
-    dofile("sys/lua/lapi/timer.lua")
-    dofile("sys/lua/lapi/map.lua")
-    dofile("sys/lua/lapi/game.lua")
-    lapi = {
-        version = "0.1"
-    }
+    lapi = {}
+    lapi.version = "0.1"
+    lapi.path = debug.getinfo(1).source:sub(2, -10)
+    lapi.loaded = {}
+    lapi.load = function(file)
+        if not lapi.loaded[file] then
+            lapi.loaded[file] = true
+            print("Love API load script: " .. file)
+            dofile(lapi.path .. '/' .. file)
+        end
+    end
+    
+    lapi.core = {'player', 'object', 'image', 'hook', 'timer', 'map', 'game'}
+    
+    for k,v in pairs(lapi.core) do
+        lapi.load('core/' .. v .. '.lua')
+    end
 end
