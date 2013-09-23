@@ -374,6 +374,18 @@ menu.lua
         show()
 
 
+hat.lua
+
+    Hat(name, path, [scalex], [scaley])
+        inserts hat to Hat.data
+
+    Hat.data
+        table of all hats
+
+    ply:set_hat(name, [fade])
+    ply:remove_hat(name)
+
+
 file.lua
 
     File(path)
