@@ -199,3 +199,31 @@ hook.lua
         hook
         func
         prio
+
+
+map.lua
+
+    read-only variables
+        name
+        xsize
+        ysize
+        tileset
+        tilecount
+        back_img
+        back_scrollx
+        back_scrolly
+        back_scrolltile
+        back_r
+        back_g
+        back_b
+        storm_x
+        storm_y
+        mission_vips
+        mission_hostages
+        mission_bombspots
+        mission_ctfflags
+        mission_dompoints
+        nobuying
+        noweapons
+        teleporters
+        botnodes

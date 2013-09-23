@@ -7,7 +7,7 @@ setmetatable(Image, {
             return setmetatable({id = arg1}, Image.mt)
         elseif type(arg1) == "table" then
             local tbl = {}
-            for k,v in pairs(arg1)
+            for k,v in pairs(arg1) do
                 table.insert(tbl, Image(v))
             end
             return tbl
