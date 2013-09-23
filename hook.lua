@@ -57,40 +57,40 @@ setmetatable(Hook, {
         if Hook.support[hook] then
             if hook == 'kill' then
                 Hook[id] = function(killer, victim, ...)
-                    return _G[func](Player(killer), Player(victim), unpack(arg))
+                    return func(Player(killer), Player(victim), unpack(arg))
                 end
             elseif hook == 'hitzone' then
                 Hook[id] = function(img, ply, obj)
-                    return _G[func](Image(img), Player(ply), Object(obj), unpack(arg))
+                    return func(Image(img), Player(ply), Object(obj), unpack(arg))
                 end
             elseif hook == 'objectdamage' then
                 Hook[id] = function(id, dmg, ply)
-                    return _G[func](Object(id), dmg, Player(ply))
+                    return func(Object(id), dmg, Player(ply))
                 end
             elseif hook == 'objectkill' then
                 Hook[id] = function(id, ply)
-                    return _G[func](Object(id), Player(ply))
+                    return func(Object(id), Player(ply))
                 end
             elseif hook == 'objectupgrade' then
                 Hook[id] = function(id, ply, ...)
-                    return _G[func](Object(id), Player(ply), unpack(arg))
+                    return func(Object(id), Player(ply), unpack(arg))
                 end
             elseif hook == 'break' then
                 Hook[id] = function(x, y, ply)
-                    return _G[func](x, y, Player(ply))
+                    return func(x, y, Player(ply))
                 end
             elseif hook == 'rcon' then
                 Hook[id] = function(cmds, ply, ...)
-                    return _G[func](cmds, Player(ply), unpack(arg))
+                    return func(cmds, Player(ply), unpack(arg))
                 end
             else
                 Hook[id] = function(id, ...) -- create a wrapper function
-                    return _G[func](Player(id), unpack(arg))
+                    return func(Player(id), unpack(arg))
                 end
             end
         else
             Hook[id] = function(...)
-                return _G[func](unpack(arg))
+                return func(unpack(arg))
             end
         end
         

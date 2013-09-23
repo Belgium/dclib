@@ -201,6 +201,16 @@ hook.lua
         prio
 
 
+timer.lua
+
+    Timer(time, func, ...)
+        creates a timer
+        return timer object
+
+    methods
+        remove()
+
+
 map.lua
 
     staic read-only variables
