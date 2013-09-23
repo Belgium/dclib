@@ -203,7 +203,7 @@ hook.lua
 
 map.lua
 
-    read-only variables
+    staic read-only variables
         name
         xsize
         ysize
@@ -231,7 +231,7 @@ map.lua
 
 game.lua
 
-    variables
+    static variables
         mp_antispeeder
         mp_autogamemode
         mp_autoteambalance
@@ -328,7 +328,7 @@ game.lua
         sv_spraytransfer
         sv_usgnonly
 
-    read-only variables
+    static read-only variables
         version
         dedicated
         phase
