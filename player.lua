@@ -35,11 +35,12 @@ setmetatable(Player, {
     end,
     __index = function(_, key)
         local m = rawget(Player, key)
-        if m then
-            return m
-        else
-            return Player(player(0, key))
-        end
+        if m then return m end
+        
+        m = rawget(Player.mt, key)
+        if m then return m end
+        
+        return Player(player(0, key))
     end
 })
 
