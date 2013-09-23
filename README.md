@@ -1,4 +1,6 @@
 lapi
 ====
 
-Livia's API for cs2d.
+Love API for CS2D. Now with object-like tables!
+
+Check DOCUMENTATION for help.
