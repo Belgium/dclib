@@ -1,5 +1,7 @@
 DOCUMENTATION
 
+CORE
+
 player.lua
 
     Player(id)
@@ -350,3 +352,23 @@ game.lua
         nextmap
         port
         bombplanted
+
+
+PLUGINS
+
+menu.lua
+
+    Menu(ply, title, func)
+        func will be called with parameters player, button_id
+        return a menu object
+    
+    static variables
+        next_page
+            text for "Next Page" -button
+    
+    methods
+        big()
+        invisible()
+        add_button(id, text)
+        set_buttons(table)  NOTICE: table format {{'id1',"txt1"}, {'id2',"txt2"}}
+        show()
