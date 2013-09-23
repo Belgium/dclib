@@ -1,6 +1,8 @@
-lapi
+Love API
 ====
 
-Love API for CS2D. Now with object-like tables!
+CS2D with objects!
 
-Check DOCUMENTATION for help.
+Install under sys/lua/lapi
+
+See DOCUMENTATION for help.
