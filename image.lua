@@ -14,6 +14,12 @@ setmetatable(Image, {
         else
             return Image(image(arg1, unpack(arg)))
         end
+    end,
+    __index = function(_, key)
+        local m = rawget(Image, key)
+        if m then return m end
+        
+        return rawget(Image.mt, key)
     end
 })
 
