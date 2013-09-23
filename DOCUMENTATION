@@ -46,7 +46,7 @@ player.lua
         ai_build(building, x, y)
         ai_buy(itemtype)
         ai_debug(text)
-        ai_dropt()
+        ai_drop()
         ai_findtarget()
         ai_freeline(x, y)
         ai_goto(x, y, walk)
@@ -117,6 +117,9 @@ image.lua
 
     Image(id)
         returns an image object
+
+    Image(table)
+        converts a table of image ids to a table of image objects
 
     methods
         remove()
