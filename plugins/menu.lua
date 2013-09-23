@@ -16,7 +16,7 @@ setmetatable(Menu, {
     end
 })
 
-function Menu.hook_menu(ply, title, button)
+Hook('menu', function(ply, title, button)
     if not ply.Menu then return end
     
     local page = title:len() - ply.Menu.title:len() - ply.Menu.page_str:len()
@@ -34,6 +34,7 @@ function Menu.hook_menu(ply, title, button)
     
     if button_id ~= "next" then
         ply.Menu.func(ply, button_id)
+        ply.Menu = nil
     else
         if page == math.ceil(#ply.Menu.buttons / 8) then -- last page
             ply.Menu:show(1)
@@ -42,7 +43,6 @@ function Menu.hook_menu(ply, title, button)
         end
     end
 end
-Hook('menu', Menu.hook_menu)
 
 function Menu.mt:__index(key)
     local m = rawget(Menu.mt, key)
