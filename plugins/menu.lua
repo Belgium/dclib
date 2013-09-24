@@ -69,7 +69,6 @@ end
 
 function Menu.mt:show(page)
     
-    local buttons = {}
     local menu_title = self.title .. ' ' .. page .. '/' .. self.last_page
     local menu_str = ''
     
@@ -86,10 +85,6 @@ function Menu.mt:show(page)
     
     if #self.buttons > 9 then
         menu_str = menu_str .. ',' .. Menu.next_page
-    end
-    
-    for k,v in pairs(buttons) do
-        menu_str = menu_str .. ',' .. v
     end
     
     menu(self.ply.id, menu_title .. menu_str)
