@@ -256,6 +256,11 @@ map.lua
         botnodes
 
 
+misc.lua
+
+    Color(r, g, b)
+
+
 game.lua
 
     static variables
