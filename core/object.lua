@@ -1,3 +1,6 @@
+local object = object
+local parse = parse
+
 Object = {}
 Object.mt = {}
 Object.names = {}

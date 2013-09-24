@@ -1,3 +1,8 @@
+local player = player
+local parse = parse
+local playerweapons = playerweapons
+local reqcld = reqcld
+
 Player = {}
 Player.mt = {}
 Player.data = {}

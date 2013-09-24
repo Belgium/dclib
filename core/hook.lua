@@ -1,3 +1,6 @@
+local addhook = addhook
+local freehook = freehook
+
 Hook = {}
 Hook.count = 0
 Hook.mt = {}

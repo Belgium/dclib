@@ -1,49 +1,48 @@
+local menu = menu
+
 Menu = {}
 Menu.mt = {}
 Menu.next_page = "Next page"
 
-setmetatable(Menu, {
-    __call = function(_, ply, title, func)
-        local m = setmetatable({
-            ply = ply,
-            title = title,
-            flag = "",
-            buttons = {},
-            func = func
-        }, Menu.mt)
-        ply.Menu = m
-        return m
-    end
-})
+function Player.mt:menu(title)
+    local m = setmetatable({
+        ply = self,
+        title = title,
+        buttons = {}
+    }, Menu.mt)
+    
+    self.Menu = m
+    return m
+end
 
 Hook('menu', function(ply, title, button)
-    if not ply.Menu then return end
+    if not ply.Menu or ply.Menu.old_title ~= title then return end
     
-    local page = title:len() - ply.Menu.title:len() - ply.Menu.page_str:len()
-    local button_id = "error"
+    local data = {}
+    local page = ply.Menu.old_page
     
-    if button == 0 then
-        button_id = "cancel"
-    elseif #ply.Menu.buttons <= 9 then
-        button_id = ply.Menu.buttons[button][1]
-    elseif button == 9 then
-        button_id = "next"
-    else
-        button_id = ply.Menu.buttons[(page - 1) * 8 + button][1]
-    end
+    if button == 0 then  -- cancel
+        data = {0, "cancel"}
+
+    elseif #ply.Menu.buttons <= 9 then  -- only 9 buttons
+        data = ply.Menu.buttons[button]
     
-    if button_id ~= "next" then
-        local func = ply.Menu.func
-        
-        ply.Menu = nil
-        func(ply, button_id)
-    else
-        if page == math.ceil(#ply.Menu.buttons / 8) then -- last page
+    elseif button == 9 then  -- "next page"
+        if page == ply.Menu.last_page then
             ply.Menu:show(1)
         else
             ply.Menu:show(page + 1)
         end
+        
+        return
+    else
+        data = ply.Menu.buttons[(page-1) * 8 + button]
     end
+    
+    local func = ply.Menu.func
+    
+    ply.Menu = nil
+    func(ply, data[1], data[2])
 end)
 
 function Menu.mt:__index(key)
@@ -51,53 +50,50 @@ function Menu.mt:__index(key)
     if m then return m end
 end
 
-function Menu.mt:big()
-    self.flag = "@b"
+function Menu.mt:button(key, value)
+    table.insert(self.buttons, {key, value})
     return self
 end
 
-function Menu.mt:invisible()
-    self.flag = "@i"
-    return self
-end
-
-function Menu.mt:add_button(id, text)
-    table.insert(self.buttons, {id, text})
-    return self
-end
-
-function Menu.mt:set_buttons(table)
-    self.buttons = {unpack(table)}  -- copy table
-    return self
+function Menu.mt:bind(func)
+    self.func = func
+    
+    if #self.buttons > 9 then
+        self.last_page = math.ceil(#self.buttons / 8)
+    else
+        self.last_page = 1
+    end
+    
+    self:show(1)
 end
 
 function Menu.mt:show(page)
-    if not page then page = 1 end
     
-    local last_page = 1
     local buttons = {}
-    local start = (page - 1) * 8 + 1
+    local menu_title = self.title .. ' ' .. page .. '/' .. self.last_page
+    local menu_str = ''
+    
+    local start = (page-1) * 8 + 1
     local stop = start + 7
     
     for i = start, stop do
         if self.buttons[i] then
-            table.insert(buttons, self.buttons[i][2])
+            menu_str = menu_str .. ',' .. self.buttons[i][2]
         else
-            table.insert(buttons, "")
+            menu_str = menu_str .. ','
         end
     end
     
     if #self.buttons > 9 then
-        last_page = math.ceil(#self.buttons / 8)
-        table.insert(buttons, Menu.next_page)
+        menu_str = menu_str .. ',' .. Menu.next_page
     end
     
-    local page_str = " " .. page .. "/" .. last_page
-    local menu_str = self.title .. page_str .. string.rep(" ",page) .. self.flag
     for k,v in pairs(buttons) do
         menu_str = menu_str .. ',' .. v
     end
     
-    self.page_str = page_str
-    menu(self.ply.id, menu_str)
+    menu(self.ply.id, menu_title .. menu_str)
+    
+    self.old_title = menu_title
+    self.old_page = page
 end

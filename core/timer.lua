@@ -1,3 +1,6 @@
+local timer = timer
+local freetimer = freetimer
+
 Timer = {}
 Timer.mt = {}
 Timer.count = 0

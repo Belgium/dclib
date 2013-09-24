@@ -1,3 +1,6 @@
+local game = game
+local parse = parse
+
 Game = {}
 
 setmetatable(Game, {

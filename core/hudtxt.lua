@@ -1,3 +1,5 @@
+local parse = parse
+
 Hudtxt = {}
 Hudtxt.mt = {}
 

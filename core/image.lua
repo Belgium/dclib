@@ -1,3 +1,5 @@
+local image = image
+
 Image = {}
 Image.mt = {}
 

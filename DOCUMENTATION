@@ -378,8 +378,7 @@ PLUGINS
 
 menu.lua
 
-    Menu(ply, title, func)
-        func will be called with parameters player, button_id
+    Menu(ply, title)
         returns a menu object
     
     static variables
@@ -387,28 +386,10 @@ menu.lua
             text for "Next Page" -button
     
     methods
+        bind(func) func will be called with parameters player, button_id
         big()
         invisible()
-        add_button(id, text)
-        set_buttons(table)  NOTICE: table format {{'id1',"txt1"}, {'id2',"txt2"}}
-        show()
-
-
-hat.lua
-
-    Hat(name, path, [scalex], [scaley])
-        inserts hat to Hat.data
-        returns a hat object
-
-    Hat.data
-        table of all hats
-
-    ply:set_hat(name, [fade])
-    ply:remove_hat()
-    ply:redraw_hat()
-    
-    ply.Hat
-    ply.Hat_name
+        button(id, text)
 
 
 file.lua

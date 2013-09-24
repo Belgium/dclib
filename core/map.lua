@@ -1,3 +1,5 @@
+local map = map
+
 Map = {}
 
 setmetatable(Map, {
