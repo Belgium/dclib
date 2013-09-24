@@ -142,6 +142,21 @@ image.lua
         id
 
 
+hudtxt.lua
+
+    Hudtxt(ply, id)
+        shortcut is ply:hudtxt(id)
+        use 0 instead of ply for every player
+        returns a hudtxt object
+
+    methods
+        show(text, x, y, align)
+        hide()
+        move(duration, x, y)
+        alpha(duration, alpha)
+        color(duration, r, g, b)
+
+
 object.lua
 
     Object(id)

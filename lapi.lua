@@ -11,7 +11,7 @@ if not lapi then
         end
     end
     
-    lapi.core = {'player', 'object', 'image', 'hook', 'timer', 'map', 'game'}
+    lapi.core = {'player', 'object', 'image', 'hudtxt', 'hook', 'timer', 'map', 'game'}
     
     for k,v in pairs(lapi.core) do
         lapi.load('core/' .. v .. '.lua')
