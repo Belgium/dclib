@@ -5,7 +5,9 @@ setmetatable(Hat, {
     __call = function(_, name, path, scalex, scaley)
         local scalex = scalex or 1
         local scaley = scaley or 1
-        Hat.data[name] = {path = path, scalex = scalex, scaley = scaley}
+        local m = {path = path, scalex = scalex, scaley = scaley}
+        Hat.data[name] = m
+        return m
     end
 })
 

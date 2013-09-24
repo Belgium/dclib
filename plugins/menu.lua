@@ -33,8 +33,10 @@ Hook('menu', function(ply, title, button)
     end
     
     if button_id ~= "next" then
-        ply.Menu.func(ply, button_id)
+        local func = ply.Menu.func
+        
         ply.Menu = nil
+        func(ply, button_id)
     else
         if page == math.ceil(#ply.Menu.buttons / 8) then -- last page
             ply.Menu:show(1)
@@ -42,7 +44,7 @@ Hook('menu', function(ply, title, button)
             ply.Menu:show(page + 1)
         end
     end
-end
+end)
 
 function Menu.mt:__index(key)
     local m = rawget(Menu.mt, key)

@@ -1,3 +1,7 @@
-function Color(r, g, b)
-    return string.char(169) .. string.format("%03d%03d%03d", r, g, b)
-end
+Color = {}
+
+setmetatable(Color, {
+    __call = function(_, red, green, blue)
+        return string.char(169) .. string.format("%03d%03d%03d", red, green, blue)
+    end
+})
