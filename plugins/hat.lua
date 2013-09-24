@@ -17,6 +17,7 @@ function Player.mt:set_hat(name, fade)
     
     self:remove_hat()
     
+    self.Hat_name = name
     self.Hat = Image(hat_data.path, 1, 0, (self.id+200))
     self.Hat:scale(hat_data.scalex, hat_data.scaley)
     self.Hat:alpha(0)
@@ -27,5 +28,12 @@ function Player.mt:remove_hat()
     if self.Hat then
         self.Hat:remove()
         self.Hat = nil
+        self.Hat_name = nil
+    end
+end
+
+function Player.mt:redraw_hat()
+    if self.Hat_name then
+        self:set_hat(self.Hat_name, 0)
     end
 end

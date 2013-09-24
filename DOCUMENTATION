@@ -405,6 +405,9 @@ hat.lua
 
     ply:set_hat(name, [fade])
     ply:remove_hat()
+    
+    ply.Hat
+    ply.Hat_name
 
 
 file.lua
