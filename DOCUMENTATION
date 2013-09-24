@@ -378,18 +378,16 @@ PLUGINS
 
 menu.lua
 
-    Menu(ply, title)
+    Menu.next_page
+        text for "Next Page" -button
+
+    ply:menu(title)
         returns a menu object
     
-    static variables
-        next_page
-            text for "Next Page" -button
-    
     methods
-        bind(func) func will be called with parameters player, button_id
-        big()
-        invisible()
-        button(id, text)
+        button(key, value)
+        bind(func)
+            bind menu to a function; it will be called as func(ply, key, value)
 
 
 file.lua
