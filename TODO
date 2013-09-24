@@ -1,11 +1,5 @@
 We need to handle these commands without parse() function.
 
-hudtxt
-hudtxt2
-hudtxtalphafade
-hudtxtcolorfade
-hudtxtmove
-
 msg
 restart
 restartround
