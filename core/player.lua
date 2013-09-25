@@ -193,7 +193,7 @@ for k,v in pairs(methods) do
     local func = _G[v]
     
     Player.mt[v] = function(self, ...)
-        func(self.id, unpack({...}))
+        return func(self.id, unpack({...}))
     end
 end
 
