@@ -44,6 +44,7 @@ player.lua
         cmsg(message)
         reroute(address)
         shake(power)
+        flash(intensity)
         ai_aim(x,y)
         ai_attack(secondary)
         ai_build(building, x, y)
@@ -393,6 +394,10 @@ menu.lua
 
 file.lua
 
-    File.read(path)
-    File.write(path, table)
+    File(path)
+        returns a file object
+    
+    methods
+        read()
+        write(data)
 

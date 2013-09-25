@@ -8,6 +8,7 @@ function Player.mt:menu(title)
     local m = setmetatable({
         ply = self,
         title = title,
+        flag = '',
         buttons = {}
     }, Menu.mt)
     
@@ -88,7 +89,7 @@ function Menu.mt:show(page)
         menu_str = menu_str .. ',' .. Menu.next_page
     end
     
-    menu(self.ply.id, menu_title .. menu_str)
+    menu(self.ply.id, menu_title .. self.flag .. menu_str)
     
     self.old_title = menu_title
     self.old_page = page

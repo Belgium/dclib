@@ -1,12 +1,23 @@
 File = {}
+File.mt = {}
 
-function File.read(path)
-    local f = io.open(path, 'r')
+setmetatable(File, {
+    __call = function(_, path)
+        return setmetatable({path = path}, File.mt)
+    end
+})
+
+function File.mt:__index(key)
+    return rawget(File.mt, key)
+end
+
+function File.mt:read()
+    local f = io.open(self.path, 'r')
     
     if not f then return false end
     
     local content = ''
-    for line in io.lines(path) do
+    for line in io.lines(self.path) do
         content = content .. line .. '\n'
     end
     
@@ -14,8 +25,8 @@ function File.read(path)
     return loadstring('return ' .. content)()
 end
 
-function File.write(path, data)
-    local f = io.open(path, 'wb')
+function File.mt:write(data)
+    local f = io.open(self.path, 'wb')
     if not f then return false end
     
     f:write(File.serialize(data))
