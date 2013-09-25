@@ -124,44 +124,32 @@ function Player.mt:__newindex(key, value)
     end
 end
 
-function Player.mt:equip(weapon)
-    Parse('equip', self.id, weapon)
-end
+local methods = {
+    equip = 'equip',
+    setpos = 'setpos',
+    kick = 'kick',
+    banip = 'banip',
+    spawn = 'spawnplayer',
+    strip = 'strip',
+    slap = 'slap',
+    kill = 'killplayer',
+    reroute = 'reroute',
+    shake = 'shake'
+}
 
-function Player.mt:setpos(x, y)
-    Parse('setpos', self.id, x, y)
+for k,v in pairs(methods) do
+
+    Player.mt[k] = function(self, ...)
+        Parse(v, self.id, unpack({...}))
+    end
 end
 
 function Player.mt:reqcld(mode, ...)
     reqcld(self.id, mode, unpack(arg))
 end
 
-function Player.mt:kick(reason)
-    Parse('kick', self.id, reason)
-end
-
-function Player.mt:banip(duration, reason)
-    Parse('banip', self.ip, duration, reason)
-end
-
 function Player.mt:banusgn(duration, reason)
     Parse('banusgn', self.usgn, duration, reason)
-end
-
-function Player.mt:spawn(x, y)
-    Parse('spawnplayer', self.id, x, y)
-end
-
-function Player.mt:strip(wpn)
-    Parse('strip', self.id, wpn)
-end
-
-function Player.mt:slap()
-    Parse('slap', self.id)
-end
-
-function Player.mt:kill()
-    Parse('killplayer', self.id)
 end
 
 function Player.mt:customkill(killer, weapon)
@@ -176,92 +164,40 @@ function Player.mt:cmsg(message)
     Parse('cmsg', message, self.id)
 end
 
-function Player.mt:reroute(address)
-    Parse('reroute', self.id, address)
-end
-
-function Player.mt:shake(power)
-    Parse('shake', self.id, power)
-end
-
 -- bots
 
-function Player.mt:ai_aim(x, y)
-    ai_aim(self.id, x, y)
+local methods = {
+    'ai_aim',
+    'ai_attack',
+    'ai_build',
+    'ai_buy',
+    'ai_debug',
+    'ai_drop',
+    'ai_freeline',
+    'ai_goto',
+    'ai_iattack',
+    'ai_move',
+    'ai_radio',
+    'ai_reload',
+    'ai_respawn',
+    'ai_rotate',
+    'ai_say',
+    'ai_sayteam',
+    'ai_selectweapon',
+    'ai_spray',
+    'ai_use'
+}
+
+
+for k,v in pairs(methods) do
+    local func = _G[v]
+    
+    Player.mt[v] = function(self, ...)
+        func(self.id, unpack({...}))
+    end
 end
 
-function Player.mt:ai_attack(secondary)
-    ai_attack(self.id, secondary)
-end
-
-function Player.mt:ai_build(building, x, y)
-    ai_build(self.id, building, x, y)
-end
-
-function Player.mt:ai_buy(itemtype)
-    ai_buy(self.id, itemtype)
-end
-
-function Player.mt:ai_debug(text)
-    ai_debug(self.id, text)
-end
-
-function Player.mt:ai_drop()
-    ai_drop(self.id)
-end
 
 function Player.mt:ai_findtarget()
     return Player(ai_findtarget(self.id))
-end
-
-function Player.mt:ai_freeline(x, y)
-    return ai_freeline(self.id, x, y)
-end
-
-function Player.mt:ai_goto(x, y, walk)
-    return ai_goto(self.id, x, y, walk)
-end
-
-function Player.mt:ai_iattack()
-    ai_iattack(self.id)
-end
-
-function Player.mt:ai_move(angle, walk)
-    ai_move(self.id, angle, walk)
-end
-
-function Player.mt:ai_radio(radioid)
-    ai_radio(self.id, radioid)
-end
-
-function Player.mt:ai_reload()
-    ai_reload(self.id)
-end
-
-function Player.mt:ai_respawn()
-    ai_respawn(self.id)
-end
-
-function Player.mt:ai_rotate(angle)
-    ai_rotate(self.id, angle)
-end
-
-function Player.mt:ai_say(text)
-    ai_say(self.id, text)
-end
-
-function Player.mt:ai_sayteam(text)
-    ai_sayteam(self.id, text)
-end
-
-function Player.mt:ai_selectweapon(itemtype)
-    ai_selectweapon(self.id, itemtype)
-end
-
-function Player.mt:ai_spray()
-    ai_spray(self.id)
-end
-
-function Player.mt:ai_use()
-    ai_use(self.id)
 end
