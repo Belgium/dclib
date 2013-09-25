@@ -12,9 +12,8 @@ if not lapi then
     end
     
     lapi.core = {
-        'parse', 'player', 'object',
-        'image', 'hudtxt', 'hook',
-        'timer', 'map', 'game', 'color', 'shortcut'
+        'parse', 'player', 'object', 'image', 'hudtxt', 'hook',
+        'menu', 'timer', 'map', 'game', 'color', 'shortcut'
     }
     
     for k,v in pairs(lapi.core) do
