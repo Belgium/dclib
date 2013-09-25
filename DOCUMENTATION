@@ -393,9 +393,6 @@ menu.lua
 
 file.lua
 
-    File(path)
-        returns a file object
+    File.read(path)
+    File.write(path, table)
 
-    methods
-        write(table)
-        read()
