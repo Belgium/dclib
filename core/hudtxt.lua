@@ -1,5 +1,3 @@
-local parse = parse
-
 Hudtxt = {}
 Hudtxt.mt = {}
 
@@ -30,7 +28,7 @@ function Hudtxt.mt:show(text, x, y, align)
         prefix = prefix .. '2 ' .. self.ply.id
     end
 
-    parse(prefix .. ' ' .. self.id .. ' "' .. text .. '" ' .. x .. ' ' .. y .. ' ' .. align)
+    Parse(prefix, self.id, text, x, y, align)
 end
 
 function Hudtxt.mt:hide()
@@ -39,26 +37,26 @@ function Hudtxt.mt:hide()
         prefix = prefix .. '2 ' .. self.ply.id
     end
 
-    parse(prefix .. ' ' .. self.id)
+    Parse(prefix, self.id)
 end
 
 function Hudtxt.mt:move(duration, x, y)
     local player_id = 0
     if type(self.ply) == 'table' then player_id = self.ply.id end
     
-    parse('hudtxtmove ' .. player_id .. ' ' .. self.id .. ' ' .. duration .. ' ' .. x .. ' ' .. y)
+    Parse('hudtxtmove', player_id, self.id, duration, x, y)
 end
 
 function Hudtxt.mt:alpha(duration, alpha)
     local player_id = 0
     if type(self.ply) == 'table' then player_id = self.ply.id end
     
-    parse('hudtxtalphafade ' .. player_id .. ' ' .. self.id .. ' ' .. duration .. ' ' .. alpha)
+    Parse('hudtxtalphafade', player_id, self.id, duration, alpha)
 end
 
 function Hudtxt.mt:color(duration, r, g, b)
     local player_id = 0
     if type(self.ply) == 'table' then player_id = self.ply.id end
     
-    parse('hudtxtcolorfade ' .. player_id .. ' ' .. self.id .. ' ' .. duration .. ' ' .. r .. ' ' .. g .. ' ' .. b)
+    Parse('hudtxtcolorfade', player_id, self.id, duration, r, g, b)
 end

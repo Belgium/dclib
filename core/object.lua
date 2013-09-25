@@ -1,5 +1,4 @@
 local object = object
-local parse = parse
 
 Object = {}
 Object.mt = {}
@@ -57,7 +56,7 @@ setmetatable(Object, {
 })
 
 function Object.spawn(objtype, x, y, rot, mode, team, player)
-    parse("spawnobject " .. objtype .. " " .. x .. " " .. y .. " " .. rot .. " " .. mode .. " " .. team .. " " .. player)
+    Parse('spawnobject', objtype, x, y, rot, mode, team, player)
 end
 
 function Object.mt:__index(key)
@@ -78,5 +77,5 @@ function Object.mt.__eq(a, b)
 end
 
 function Object.mt:kill()
-    parse('killobject ' .. self.id)
+    Parse('killobject', self.id)
 end

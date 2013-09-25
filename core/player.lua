@@ -1,5 +1,4 @@
 local player = player
-local parse = parse
 local playerweapons = playerweapons
 local reqcld = reqcld
 
@@ -73,16 +72,16 @@ end
 
 function Player.mt:__newindex(key, value)
     if Player.indextable[key] ~= nil then
-        parse(Player.indextable[key] .. ' ' .. self.id .. ' ' .. value)
+        Parse(Player.indextable[key], self.id, value)
     elseif key == 'name' then
-        parse('setname ' .. self.id .. ' "' .. value .. '" 1')
+        Parse('setname', self.id, value, 1)
     elseif key == 'team' then
         if value == 1 then
-            parse('maket ' .. self.id)
+            Parse('maket', self.id)
         elseif value == 2 then
-            parse('makect ' .. self.id)
+            Parse('makect', self.id)
         else
-            parse('makespec ' .. self.id)
+            Parse('makespec', self.id)
         end
     elseif key == 'x' then
         self:setpos(value, self.y)
@@ -97,7 +96,6 @@ function Player.mt:__newindex(key, value)
     elseif key == 'weapons' then
         local tbl = playerweapons(self.id)
         
-        print("let's give weapons")
         for k,v in pairs(value) do
             local found = false
             for k2,v2 in pairs(tbl) do
@@ -127,11 +125,11 @@ function Player.mt:__newindex(key, value)
 end
 
 function Player.mt:equip(weapon)
-    parse('equip ' .. self.id .. ' ' .. weapon)
+    Parse('equip', self.id, weapon)
 end
 
 function Player.mt:setpos(x, y)
-    parse('setpos ' .. self.id .. ' ' .. x .. ' ' .. y) 
+    Parse('setpos', self.id, x, y)
 end
 
 function Player.mt:reqcld(mode, ...)
@@ -139,35 +137,35 @@ function Player.mt:reqcld(mode, ...)
 end
 
 function Player.mt:kick(reason)
-    parse('kick ' .. self.id .. ' ' .. reason)
+    Parse('kick', self.id, reason)
 end
 
 function Player.mt:banip(duration, reason)
-    parse('banip ' .. self.ip .. ' ' .. duration .. ' ' .. reason)
+    Parse('banip', self.ip, duration, reason)
 end
 
 function Player.mt:banusgn(duration, reason)
-    parse('banusgn ' .. self.usgn .. ' ' .. duration .. ' ' .. reason)
+    Parse('banusgn', self.usgn, duration, reason)
 end
 
 function Player.mt:spawn(x, y)
-    parse('spawnplayer ' .. self.id .. ' ' .. x .. ' ' .. y)
+    Parse('spawnplayer', self.id, x, y)
 end
 
 function Player.mt:strip(wpn)
-    parse('strip ' .. self.id .. ' ' .. wpn)
+    Parse('strip', self.id, wpn)
 end
 
 function Player.mt:slap()
-    parse('slap ' .. self.id)
+    Parse('slap', self.id)
 end
 
 function Player.mt:kill()
-    parse('killplayer ' .. self.id)
+    Parse('killplayer', self.id)
 end
 
 function Player.mt:customkill(killer, weapon)
-    parse('customkill ' .. killer .. ' "' .. weapon .. '" ' .. self.id)
+    Parse('customkill', killer, weapon, self.id)
 end
 
 function Player.mt:msg(message)
@@ -175,15 +173,15 @@ function Player.mt:msg(message)
 end
 
 function Player.mt:cmsg(message)
-    parse('cmsg "' .. message .. '" ' .. self.id)
+    Parse('cmsg', message, self.id)
 end
 
 function Player.mt:reroute(address)
-    parse('reroute ' .. self.id .. ' ' .. address)
+    Parse('reroute', self.id, address)
 end
 
 function Player.mt:shake(power)
-    parse('shake ' .. self.id .. ' ' .. power)
+    Parse('shake', self.id, power)
 end
 
 -- bots

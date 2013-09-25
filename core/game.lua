@@ -1,5 +1,4 @@
 local game = game
-local parse = parse
 
 Game = {}
 
@@ -8,6 +7,6 @@ setmetatable(Game, {
         return game(key)
     end,
     __newindex = function(_, key, value)
-        parse(key .. " " .. value)
+        Parse(key, value)
     end
 })
