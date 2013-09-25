@@ -1,45 +1,31 @@
 File = {}
 
-setmetatable(File, {
-    __call = function(_, path)
-        return setmetatable({path = path}, File)
+function File.read(path)
+    local f = io.open(path, 'r')
+    
+    if not f then return false end
+    
+    local content = ''
+    for line in io.lines(path) do
+        content = content .. line .. '\n'
     end
-})
-
-function File:__index(key)
-    return rawget(File, key)
+    
+    f:close()
+    return loadstring('return ' .. content)()
 end
 
-function File:read()
-    local file = io.open(self.path, 'r')
-    if file then
-        local content = ''
-        for line in io.lines(self.path) do
-            content = content .. line .. '\n'
-        end
-        file:close()
-        return loadstring('return ' .. content)()
-    end
+function File.write(path, data)
+    local f = io.open(path, 'wb')
+    if not f then return false end
+    
+    f:write(File.serialize(data))
+    f:close()
+    return true
 end
 
-function File:write(data)
-    local str = serialize(data)
-    local file = io.open(self.path, 'wb')
-    if file then
-        file:write(str)
-        file:close()
-        return true
-    else
-        return false
-    end
-end
-
-
--- thanks to Henrik Ilgen
--- at http://stackoverflow.com/questions/6075262/lua-table-tostringtablename-and-table-fromstringstringtable-functions
-function serialize(val, name, depth)
+function File.serialize(val, name, depth)
     depth = depth or 0
-    local tmp = string.rep(' ', depth)
+    local tmp = string.rep(' ', depth*4)
     
     if name then
         tmp = tmp .. name .. ' = '
@@ -50,13 +36,13 @@ function serialize(val, name, depth)
 
         for k, v in pairs(val) do
             if type(k) == 'number' then
-                tmp = tmp .. serialize(v, nil, depth+1) .. ',\n'
+                tmp = tmp .. File.serialize(v, nil, depth+1) .. ',\n'
             else
-                tmp = tmp .. serialize(v, k, depth + 1) .. ',\n'
+                tmp = tmp .. File.serialize(v, k, depth + 1) .. ',\n'
             end
         end
 
-        tmp = tmp .. string.rep(' ', depth) .. '}' -- table end
+        tmp = tmp .. string.rep(' ', depth*4) .. '}' -- table end
     elseif type(val) == 'number' then
         tmp = tmp .. tostring(val)
     elseif type(val) == 'string' then
@@ -64,7 +50,7 @@ function serialize(val, name, depth)
     elseif type(val) == 'boolean' then
         tmp = tmp .. (val and 'true' or 'false')
     else
-        tmp = tmp .. '\"[inserializeable datatype:' .. type(val) .. ']\"'
+        tmp = tmp .. '\"[unknown data type:' .. type(val) .. ']\"'
     end
 
     return tmp
