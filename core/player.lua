@@ -86,11 +86,11 @@ function Player.mt:__newindex(key, value)
     elseif key == 'x' then
         self:setpos(value, self.y)
     elseif key == 'tilex' then
-        self:setpos(value * 16, self.y)
+        self:setpos(value * 32 + 16, self.y)
     elseif key == 'y' then
         self:setpos(self.x, value)
     elseif key == 'tiley' then
-        self:setpos(self.x, value * 16)
+        self:setpos(self.x, value * 32 + 16)
     elseif key == 'enemy' then
         return
     elseif key == 'weapons' then
