@@ -34,35 +34,30 @@ function File.mt:write(data)
     return true
 end
 
-function File.serialize(val, name, depth)
-    depth = depth or 0
-    local tmp = string.rep(' ', depth*4)
+function File.serialize(data, key, indent)
+    indent = indent or ''
     
-    if name then
-        tmp = tmp .. name .. ' = '
+    local str = indent
+    
+    if key then
+        str = str .. key .. ' = '
     end
     
-    if type(val) == 'table' then
-        tmp = tmp .. '{\n' -- table begin
-
-        for k, v in pairs(val) do
-            if type(k) == 'number' then
-                tmp = tmp .. File.serialize(v, nil, depth+1) .. ',\n'
-            else
-                tmp = tmp .. File.serialize(v, k, depth + 1) .. ',\n'
-            end
+    if type(data) == 'table' then
+        str = str .. '{\n'
+        for k,v in pairs(data) do
+            str = str .. File.serialize(v, (type(k)=='string' and k or nil), indent .. '  ') .. ',\n'
         end
-
-        tmp = tmp .. string.rep(' ', depth*4) .. '}' -- table end
-    elseif type(val) == 'number' then
-        tmp = tmp .. tostring(val)
-    elseif type(val) == 'string' then
-        tmp = tmp .. string.format('%q', val)
-    elseif type(val) == 'boolean' then
-        tmp = tmp .. (val and 'true' or 'false')
+        str = str .. indent .. '}'
+    elseif type(data) == 'string' then
+        str = str .. string.format('%q', data)
+    elseif type(data) == 'number' then
+        str = str .. tostring(data)
+    elseif type(data) == 'boolean' then
+        str = str .. (data and 'true' or 'false')
     else
-        tmp = tmp .. '\"[unknown data type:' .. type(val) .. ']\"'
+        str = str .. '"unknown"'
     end
-
-    return tmp
+    
+    return str
 end
