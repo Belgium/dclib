@@ -13,7 +13,7 @@ if not lapi then
     
     lapi.core = {
         'parse', 'player', 'object', 'image', 'hudtxt', 'hook',
-        'menu', 'timer', 'map', 'game', 'color', 'shortcut'
+        'menu', 'timer', 'map', 'game', 'color', 'file', 'shortcut'
     }
     
     for k,v in pairs(lapi.core) do

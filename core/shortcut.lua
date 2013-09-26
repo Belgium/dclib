@@ -5,3 +5,4 @@ O = Object
 I = Image
 G = Game
 M = Map
+F = File
