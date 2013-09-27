@@ -60,11 +60,15 @@ setmetatable(Hook, {
         if Hook.support[hook] then
             if hook == 'kill' then
                 Hook[id] = function(killer, victim, ...)
-                    return func(Player(killer), Player(victim), unpack(arg))
+                    return func(Player(killer), Player(victim), unpack({...}))
+                end
+            elseif hook == 'hit' then
+                Hook[id] = function(ply, source, ...)
+                    return func(Player(ply), Player(source), unpack({...}))
                 end
             elseif hook == 'hitzone' then
-                Hook[id] = function(img, ply, obj)
-                    return func(Image(img), Player(ply), Object(obj), unpack(arg))
+                Hook[id] = function(img, ply, obj, ...)
+                    return func(Image(img), Player(ply), Object(obj), unpack({...}))
                 end
             elseif hook == 'objectdamage' then
                 Hook[id] = function(id, dmg, ply)
@@ -76,7 +80,7 @@ setmetatable(Hook, {
                 end
             elseif hook == 'objectupgrade' then
                 Hook[id] = function(id, ply, ...)
-                    return func(Object(id), Player(ply), unpack(arg))
+                    return func(Object(id), Player(ply), unpack({...}))
                 end
             elseif hook == 'break' then
                 Hook[id] = function(x, y, ply)
@@ -84,16 +88,16 @@ setmetatable(Hook, {
                 end
             elseif hook == 'rcon' then
                 Hook[id] = function(cmds, ply, ...)
-                    return func(cmds, Player(ply), unpack(arg))
+                    return func(cmds, Player(ply), unpack({...}))
                 end
             else
                 Hook[id] = function(id, ...) -- create a wrapper function
-                    return func(Player(id), unpack(arg))
+                    return func(Player(id), unpack({...}))
                 end
             end
         else
             Hook[id] = function(...)
-                return func(unpack(arg))
+                return func(unpack({...}))
             end
         end
         

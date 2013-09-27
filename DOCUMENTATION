@@ -265,6 +265,8 @@ misc.lua
 
 game.lua
 
+    Game
+    
     static variables
         mp_antispeeder
         mp_autogamemode

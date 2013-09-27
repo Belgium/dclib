@@ -110,7 +110,6 @@ function Player.mt:__newindex(key, value)
         for k,v in pairs(tbl) do
             local found = false
             for k2,v2 in pairs(value) do
-                print("v2 = " .. v2)
                 if v == v2 then
                     found = true
                 end
