@@ -4,17 +4,12 @@ Image = {}
 Image.mt = {}
 
 setmetatable(Image, {
-    __call = function(_, arg1, ...)
-        if type(arg1) == "number" then
-            return setmetatable({id = arg1}, Image.mt)
-        elseif type(arg1) == "table" then
-            local tbl = {}
-            for k,v in pairs(arg1) do
-                table.insert(tbl, Image(v))
-            end
-            return tbl
-        else
-            return Image(image(arg1, unpack(arg)))
+    __call = function(_, path, x, y, mode, ...)
+        if type(path) == 'string' then
+            local img = image(path, x, y, mode, unpack({...}))
+            return setmetatable({id = img}, Image.mt)
+        elseif type(path) == 'number' then
+            return setmetatable({id = path}, Image.mt)
         end
     end,
     __index = function(_, key)
@@ -43,7 +38,7 @@ local transform = {
 
 for k,v in pairs(transform) do  -- generate methods from transform table
     Image.mt[k] = function(self, ...)
-        _G[v](self.id, unpack(arg))
+        _G[v](self.id, unpack({...}))
     end
 end
 
