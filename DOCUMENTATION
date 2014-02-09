@@ -139,9 +139,10 @@ image.lua
         t_rotate(time, rot)
         t_rotateconstantly(speed)
         t_scale(time, x, y)
-    
+
     read-only variables
         id
+        exists
 
 
 hudtxt.lua
@@ -172,10 +173,10 @@ object.lua
 
     Object.table
         a table with all objects
-    
+
     Object.spawn(type, x, y, rot, mode, team, player)
         spawns a new object
-    
+
     methods
         :kill()
 
@@ -266,7 +267,7 @@ misc.lua
 game.lua
 
     Game
-    
+
     static variables
         mp_antispeeder
         mp_autogamemode
@@ -289,6 +290,7 @@ game.lua
         mp_freezetime
         mp_grenaderebuy
         mp_hostagepenalty
+        mp_hovertext
         mp_hud
         mp_idleaction
         mp_idlekick
@@ -301,6 +303,7 @@ game.lua
         mp_killinfo
         mp_killteambuildings
         mp_lagcompensation
+        mp_lagcompensationdivisor
         mp_localrconoutput
         mp_luamap
         mp_luaserver
@@ -387,7 +390,7 @@ menu.lua
 
     ply:menu(title)
         returns a menu object
-    
+
     methods
         button(key, value)
         bind(func)
@@ -398,7 +401,7 @@ file.lua
 
     File(path)
         returns a file object
-    
+
     methods
         read()
         write(data)
