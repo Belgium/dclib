@@ -59,6 +59,7 @@ function Image.mt:remove()
     if self.exists then
         freeimage(self.id)
         Image.alive[self.id] = nil
+        self.exists = false
     end
 end
 
