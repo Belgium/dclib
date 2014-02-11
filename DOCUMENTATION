@@ -35,6 +35,7 @@ player.lua
         kick(reason)
         banip(duration, reason)
         banusgn(duration, reason)
+        setammo(wpn, ammoin, ammo)
         spawn(x, y)
         strip(wpn)
         slap()
