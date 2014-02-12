@@ -3,7 +3,11 @@ Hudtxt.mt = {}
 
 setmetatable(Hudtxt, {
     __call = function(_, ply, id)
-        return setmetatable({ply = ply, id = id}, Hudtxt.mt)
+        if type(ply) == "number" then
+            return setmetatable({ply = 0, id = ply}, Hudtxt.mt)
+        else
+            return setmetatable({ply = ply, id = id}, Hudtxt.mt)
+        end
     end,
     __index = function(_, key)
         local m = rawget(Hudtxt, key)

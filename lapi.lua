@@ -1,6 +1,5 @@
 if not lapi then
     lapi = {}
-    lapi.version = "0.1"
     lapi.path = debug.getinfo(1).source:sub(2, -10)
     lapi.loaded = {}
     lapi.load = function(file)
@@ -12,9 +11,16 @@ if not lapi then
     end
     
     lapi.core = {
-        'debug',
-        'parse', 'player', 'object', 'image', 'hudtxt', 'hook',
-        'menu', 'timer', 'map', 'game', 'color', 'file', 'shortcut', 'util'
+        'player',
+        'object',
+        'image',
+        'hudtxt',
+        'hook',
+        'menu',
+        'timer',
+        'file',
+        'util',
+        'misc'
     }
     
     for k,v in pairs(lapi.core) do
