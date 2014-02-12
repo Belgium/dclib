@@ -6,7 +6,7 @@ CS2D with objects!
 Instructions
 ============
 
-- Install under sys/lua/lapi
-- Load lapi: dofile('sys/lua/lapi/lapi.lua')
-- Load plugin: lapi.load('plugins/file.lua')
-- See DOCUMENTATION for more help
+    cd sys/lua/
+    git clone https://github.com/tarjoilija/lapi.git
+
+Load lapi.lua and read wiki.
