@@ -15,6 +15,7 @@ if not lapi then
         'object',
         'image',
         'hudtxt',
+        'tile',
         'hook',
         'menu',
         'timer',
