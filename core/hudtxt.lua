@@ -47,20 +47,20 @@ end
 function Hudtxt.mt:move(duration, x, y)
     local player_id = 0
     if type(self.ply) == 'table' then player_id = self.ply.id end
-    
+
     Parse('hudtxtmove', player_id, self.id, duration, x, y)
 end
 
 function Hudtxt.mt:alpha(duration, alpha)
     local player_id = 0
     if type(self.ply) == 'table' then player_id = self.ply.id end
-    
+
     Parse('hudtxtalphafade', player_id, self.id, duration, alpha)
 end
 
 function Hudtxt.mt:color(duration, r, g, b)
     local player_id = 0
     if type(self.ply) == 'table' then player_id = self.ply.id end
-    
+
     Parse('hudtxtcolorfade', player_id, self.id, duration, r, g, b)
 end

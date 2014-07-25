@@ -56,7 +56,7 @@ Hook.support['break'] = true
 setmetatable(Hook, {
     __call = function(_, hook, func, prio)
         local id = 'Hook_' .. Hook.count
-        
+
         if Hook.support[hook] then
             if hook == 'kill' then
                 Hook[id] = function(killer, victim, ...)
@@ -100,14 +100,14 @@ setmetatable(Hook, {
                 return func(unpack({...}))
             end
         end
-        
+
         if prio then
             addhook(hook, 'Hook.' .. id, prio)
         else
             addhook(hook, 'Hook.' .. id)
         end
         Hook.count = Hook.count + 1
-        
+
         local tbl = {
             hook = hook,
             func = func,

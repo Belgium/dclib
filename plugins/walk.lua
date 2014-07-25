@@ -19,13 +19,13 @@ end
 
 local function recursive(x, y)
     add_tile(x, y)
-    
+
     if entity(x, y, 'typename') == 'Func_Teleport' then
         local tx = entity(x, y, 'int0')
         local ty = entity(x, y, 'int1')
         if is_walkable(tx, ty) then recursive(tx, ty) end
     end
-        
+
     if is_walkable(x-1, y) then recursive(x-1, y) end
     if is_walkable(x+1, y) then recursive(x+1, y) end
     if is_walkable(x, y-1) then recursive(x, y-1) end
@@ -36,7 +36,7 @@ function Walk.scan()
     Walk.tile = {}
     local sx, sy = randomentity(1)
     recursive(sx, sy)
-    
+
     Walk.list = {}
     for x,v in pairs(Walk.tile) do
         for y,_ in pairs(v) do

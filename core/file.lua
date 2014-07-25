@@ -13,14 +13,14 @@ end
 
 function File.mt:read()
     local f = io.open(self.path, 'r')
-    
+
     if not f then return false end
-    
+
     local content = ''
     for line in io.lines(self.path) do
         content = content .. line .. '\n'
     end
-    
+
     f:close()
     return loadstring('return ' .. content)()
 end
@@ -28,7 +28,7 @@ end
 function File.mt:write(data)
     local f = io.open(self.path, 'wb')
     if not f then return false end
-    
+
     f:write(File.serialize(data))
     f:close()
     return true
@@ -36,13 +36,13 @@ end
 
 function File.serialize(data, key, indent)
     indent = indent or ''
-    
+
     local str = indent
-    
+
     if key then
         str = str .. key .. ' = '
     end
-    
+
     if type(data) == 'table' then
         str = str .. '{\n'
         for k,v in pairs(data) do
@@ -58,6 +58,6 @@ function File.serialize(data, key, indent)
     else
         str = str .. '"unknown"'
     end
-    
+
     return str
 end

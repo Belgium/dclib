@@ -47,10 +47,10 @@ setmetatable(Object, {
     __index = function(_, key)
         local m = rawget(Object, key)
         if m then return m end
-        
+
         m = rawget(Object.mt, key)
         if m then return m end
-        
+
         return Object(object(0, key))
     end
 })

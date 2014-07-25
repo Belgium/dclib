@@ -9,7 +9,7 @@ if not lapi then
             dofile(lapi.path .. '/' .. file)
         end
     end
-    
+
     lapi.core = {
         'player',
         'object',
@@ -22,7 +22,7 @@ if not lapi then
         'util',
         'misc'
     }
-    
+
     for k,v in pairs(lapi.core) do
         lapi.load('core/' .. v .. '.lua')
     end

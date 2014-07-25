@@ -78,7 +78,7 @@ function Player.mt:__index(key)
             return 2
         elseif team == 2 then
             return 1
-        else 
+        else
             return 0
         end
     elseif key == 'weapons' then

@@ -85,7 +85,7 @@ function Menu.mt:show(page)
     end
 
     if #self.buttons > 9 then
-        menu_title = menu_title .. ' ' .. page .. '/' .. self.last_page 
+        menu_title = menu_title .. ' ' .. page .. '/' .. self.last_page
         menu_str = menu_str .. ',' .. Menu.next_page
     end
 
