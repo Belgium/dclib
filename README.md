@@ -1,7 +1,7 @@
 Love API
 ========
 
-CS2D with objects!
+CS2D scripting made fun and easy. Just a small wrapper over cs2d functions and commands. See wiki for some ugly documentation.
 
 Instructions
 ============
@@ -9,4 +9,6 @@ Instructions
     cd sys/lua/
     git clone https://github.com/tarjoilija/lapi.git
 
-Load lapi.lua and read wiki.
+Add this line somewhere
+
+    dofile("sys/lua/lapi/lapi.lua")
