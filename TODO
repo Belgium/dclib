@@ -12,9 +12,6 @@ effect
 explosion
 flashposition
 
-flashplayer
-reroute
-
 bot_add
 bot_add_ct
 bot_add_t
