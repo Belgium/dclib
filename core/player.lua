@@ -183,6 +183,10 @@ function Player.mt:cmsg(message)
     Parse('cmsg', message, self.id)
 end
 
+function Player.mt:sound(file)
+    Parse('sv_sound2', self.id, file)
+end
+
 -- bots
 
 local methods = {
